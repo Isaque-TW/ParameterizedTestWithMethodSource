@@ -51,3 +51,48 @@ public static Stream<Arguments> testDivision() {
 - **assertEquals**: Compara o valor obtido no teste (`actual`) com o valor esperado (`expected`), dentro de uma margem de erro para assegurar precisão.
 
 Com esse teste parametrizado, conseguimos verificar se nossa função `division` está funcionando corretamente em diferentes casos, o que facilita o processo de validação e aumenta a confiabilidade do código.
+________________________________________________________________________________________________________________________
+### Testes Parametrizados com @CsvSource
+O @CsvSource é uma anotação usada para fornecer parâmetros em testes JUnit, facilitando a execução de um mesmo teste com diferentes conjuntos de dados. Isso torna o código de teste mais limpo e evita a repetição de código.
+
+Exemplo de Uso:
+
+# Testes Parametrizados com `@CsvSource`
+
+A anotação `@CsvSource` permite executar um mesmo teste com diferentes conjuntos de dados, tornando o código de teste mais conciso e evitando a repetição. Essa anotação é especialmente útil quando há múltiplos cenários a serem testados com o mesmo método.
+
+## Exemplo de Uso
+
+```java
+@CsvSource({
+    "6.2, 2, 3.1",
+    "71, 14, 5.07",
+    "18.3, 3.1, 5.90"
+})
+void testDivisao(double valor1, double valor2, double resultadoEsperado) {
+    assertEquals(resultadoEsperado, valor1 / valor2, 0.01);
+}
+```
+
+## Explicação
+
+* **`@ParameterizedTest`**: Permite a execução de testes parametrizados no JUnit, usando diferentes conjuntos de valores.
+* **`@CsvSource`**: Passa valores diretamente no código, onde cada linha representa um novo conjunto de parâmetros. Esses valores são inseridos na ordem em que são listados.
+
+No exemplo acima, o teste `testDivisao` é executado várias vezes, uma para cada conjunto de valores passados na anotação `@CsvSource`. A cada execução, os valores são mapeados para os parâmetros `valor1`, `valor2` e `resultadoEsperado`, e o teste verifica se `valor1 / valor2` é igual a `resultadoEsperado`.
+
+## Exemplo Adicional
+
+O `@CsvSource` também pode ser utilizado para valores de texto. Veja o exemplo abaixo:
+
+```java
+@ParameterizedTest
+@CsvSource({
+    "Pelé, Football",
+    "Senna, F1",
+    "Keith Moon, ''"
+})
+void testEsportes(String nome, String esporte) {
+    // Implementação do teste usando valores de texto
+}
+
