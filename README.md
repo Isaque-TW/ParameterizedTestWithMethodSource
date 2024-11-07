@@ -95,4 +95,27 @@ O `@CsvSource` também pode ser utilizado para valores de texto. Veja o exemplo 
 void testEsportes(String nome, String esporte) {
     // Implementação do teste usando valores de texto
 }
+```
+#### Exemplo com o arquivo`@CsvFileSource`
 
+Imagine que precisamos testar dezenas, centenas ou até milhares de possibilidades. Nesses casos, o uso do `@CsvSource` para incluir todos os dados diretamente no código não é prático. Para essas situações, o `@CsvFileSource` é ideal, pois permite carregar os dados a partir de um arquivo CSV.
+
+No exemplo abaixo, utilizamos `@CsvFileSource` para testar uma operação de divisão com múltiplos valores:
+
+```java
+@ParameterizedTest
+@DisplayName("Test double division [firstNumber, secondNumber, expectedResult]")
+@CsvFileSource(resources = "/testDivision.csv")
+void testDivision(double firstNumber, double secondNumber, double expectedResult) {
+    // Implementação do teste utilizando os dados do arquivo CSV
+}
+```
+No arquivo `testDivision.csv`, cada linha contém um conjunto de valores que será usado nos testes:
+
+| firstNumber | secondNumber | expectedResult |
+|-------------|--------------|----------------|
+| 6.2         | 2            | 3.1            |
+| 271         | 14           | 5.07           |
+| 318.3       | 3.1          | 5.90           |
+
+Cada linha representa um conjunto de valores (`firstNumber`, `secondNumber`, `expectedResult`). Com `@CsvFileSource`, o JUnit executa o teste para cada linha do arquivo, facilitando a validação de múltiplos cenários de forma eficiente e organizada.
