@@ -3,10 +3,7 @@ package br.com.isaque.math;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
@@ -16,6 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SimpleMathTestS4 {
 
     SimpleMath math;
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Pele", "Senna", "Keith Moon"})
+    void testValueSource(String firstName) {
+        System.out.println(firstName);
+        assertNotNull(firstName);
+    }
 
     @BeforeEach
     void beforeEachMethod() {

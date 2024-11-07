@@ -119,3 +119,5 @@ No arquivo `testDivision.csv`, cada linha contém um conjunto de valores que ser
 | 318.3       | 3.1          | 5.90           |
 
 Cada linha representa um conjunto de valores (`firstNumber`, `secondNumber`, `expectedResult`). Com `@CsvFileSource`, o JUnit executa o teste para cada linha do arquivo, facilitando a validação de múltiplos cenários de forma eficiente e organizada.
+_______________________________________________________________________________________________________________________
+#### Tests`@Parameterized` com `@ValueSource`
